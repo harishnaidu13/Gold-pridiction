@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>gold price prediction</h2>
+    <form id="goldform">
+        Date<br>
+        <input id="date" placeholder="date" required><br><br>
+        sp500 open<br>
+        <input id="sp500 open" placeholder="sp500 Open" required><br><br>
+        sp500 volume<br>
+        <input id="sp500 volume" placeholder="sp500 volume" required><br><br>
+        sp500 high-low<br>
+        <input id="sp500 high-low" placeholder="sp500 high-low" required><br><br>
+        nasdaq volume<br>
+        <input id="nasdaq volume" placeholder="nasdaq volume" required><br><br>
+        nasdaq high-low<br>
+        <input id="nasdaq high-low" placeholder="nasdaq high-low" required><br><br>
+        us_rates_%<br>
+        <input id="us_rates_%" placeholder="us_rates_%" required><br><br>
+        usd_chf<br>
+        <input id="usd_chf" placeholder="usd_chf" required><br><br>
+        eur_usd<br>
+        <input id="eur_usd" placeholder="eur_usd" required><br><br>
+        silver open<br>
+        <input id="silver open" placeholder="silver open" required><br><br>
+        silver volume<br>
+        <input id="silver volume" placeholder="silver volume" required><br><br>
+        silver high-low<br>
+        <input id="silver high-low" placeholder="silver high-low" required><br><br>
+        oil open<br>
+        <input id="oil open" placeholder="oil open" required><br><br>
+        oil volume<br>
+        <input id="oil volume" placeholder="oil volume" required><br><br>
+        oil high-low<br>
+        <input id="oil high-low" placeholder="oil high-low" required><br><br>
+        platinum open<br>
+        <input id="platinum open" placeholder="platinum open" required><br><br>
+         platinum volume<br>
+        <input id="platinum volume" placeholder="platinum volume" required><br><br>
+         platinum high-low<br>
+        <input id="platinum high-low" placeholder="platinum high-low" required><br><br>
+         palladinum open<br>
+        <input id="palladium open" placeholder="palladium open" required><br><br>
+         palladinum volume<br>
+        <input id="palladium volume" placeholder="palladium volume" required><br><br>
+         palladinum high-low<br>
+        <input id="palladium high-low" placeholder="palladium high-low" required><br><br>
+         gold open<br>
+        <input id="gold open" placeholder="gold open" required><br><br>
+         gold close<br>
+        <input id="gold close" placeholder="gold close" required><br><br>
+        gold volume<br>
+        <input id="gold volume" placeholder="gold volume" required><br><br>
+        day<br>
+        <input id="day" placeholder="day" required><br><br>
+        month<br>
+        <input id="month" placeholder="month"><br><br>
+        <button type="submit">predict</button>
+
+
+
+    </form>
+    <h3 id="result"></h3>
+    <script>
+        const API_URL="http://127.0.0.1:8000"
+        document.getElementById("paddyform").onsubmit=async function (event) {
+            event.preventDefault();
+            document.getElementById("result").innerText="Predicting...";
+            let data={
+                "date":num("date"),
+                "sp500 open":num("sp500 open"),
+                "sp500 volume":num("sp500 volume"),
+                "sp500 high-low":num("sp500 high-low"),
+                "nasdaq volume":num("nasdaq volume"),
+                "nasdaq high-low":num("nasdaq high-low"),
+                "us_rates_%":num("us_rates_%"),
+                "usd_chf":num("usd_chf"),
+                "eur_usd":num("eur_usd"),
+                "silver open":num("silver open"),
+                "silver volume":num("silver volume"),
+                "silver high-low":num("silver high-low"),
+                "oil open":num("oil open"),
+                "oil volume":num("oil volume"),
+                "oil high-low":num("oil high low"),
+                "platinum open":num("platinum open"),
+                "platinum volume":num("platinum volume"),
+                "platinum high-low":num("platinum high-low"),
+                "palladium open":num("palladium open"),
+                "palladium volume":num("palladium volume"),
+                "palladium high-low":num("palladium high low"),
+                "gold open":num("gold open"),
+                "gold close":num("gold close"),
+                "gold volume":num("gold volume"),
+                "day":num("day"),
+                "month":num("month"),
+
+            };
+            try{
+                let response=await fetch(API_URL+"/predict",{
+                    method:"POST",
+                    headers:{"Content-Type":"application/json"},
+                    body:JSON.stringify(data)
+                });
+                let result=await response.json();
+                if (response.ok){
+                    document.getElementById("result").innerText="gold price:"+ result.gold_price_prediction+"Rs";
+
+                } else{
+                    document.getElementById("result").innerText="predition failed:"+JSON.stringify(result.detail);
+                }
+            } catch(error){
+                document.getElementById("result").innerText="Connot reach the sever. Try again in a minute,";
+
+
+                }
+            }
+
+    </script>
+
+</body>
+</html>
