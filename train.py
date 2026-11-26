@@ -33,11 +33,16 @@ df.drop(columns=["date"],inplace=True)
 
  
 df = df.dropna(subset=["gold close"])
+num=df.select_dtypes(include="number").columns.tolist()
+per=df[num].isnull().mean()*100
+val=per[per>80].index.tolist()
+df=df.drop(columns=val)
 
 # 5. Separate X and y
 X = df.drop(columns=["gold close"])
 y = df["gold close"]
 X = X.select_dtypes(include="number")
+
 
 corr=X.corr().abs()
 upper=corr.where(np.triu(np.ones(corr.shape),k=1).astype(bool))
