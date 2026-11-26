@@ -20,8 +20,7 @@
         <input id="nasdaq volume" placeholder="nasdaq volume" required><br><br>
         nasdaq high-low<br>
         <input id="nasdaq high-low" placeholder="nasdaq high-low" required><br><br>
-        us_rates_%<br>
-        <input id="us_rates_%" placeholder="us_rates_%" required><br><br>
+
         usd_chf<br>
         <input id="usd_chf" placeholder="usd_chf" required><br><br>
         eur_usd<br>
@@ -52,16 +51,10 @@
         <input id="palladium high-low" placeholder="palladium high-low" required><br><br>
          gold open<br>
         <input id="gold open" placeholder="gold open" required><br><br>
-         gold close<br>
-        <input id="gold close" placeholder="gold close" required><br><br>
+         
         gold volume<br>
         <input id="gold volume" placeholder="gold volume" required><br><br>
-        day<br>
-        <input id="day" placeholder="day" required><br><br>
-        month<br>
-        <input id="month" placeholder="month"><br><br>
-        <button type="submit">predict</button>
-
+        
 
 
     </form>
@@ -78,7 +71,7 @@
                 "sp500 high-low":num("sp500 high-low"),
                 "nasdaq volume":num("nasdaq volume"),
                 "nasdaq high-low":num("nasdaq high-low"),
-                "us_rates_%":num("us_rates_%"),
+                
                 "usd_chf":num("usd_chf"),
                 "eur_usd":num("eur_usd"),
                 "silver open":num("silver open"),
@@ -94,11 +87,9 @@
                 "palladium volume":num("palladium volume"),
                 "palladium high-low":num("palladium high low"),
                 "gold open":num("gold open"),
-                "gold close":num("gold close"),
+               
                 "gold volume":num("gold volume"),
-                "day":num("day"),
-                "month":num("month"),
-
+               
             };
             try{
                 let response=await fetch(API_URL+"/predict",{
